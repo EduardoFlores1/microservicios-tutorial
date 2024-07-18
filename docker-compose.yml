@@ -1,0 +1,44 @@
+version: '3'
+services:
+  ### Postgres database for inventario
+  db-inventario:
+    container_name: db-inventario
+    image: postgres:15.2
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ms_inventario
+      POSTGRES_USER: eduardo
+      POSTGRES_PASSWORD: eduardo12345
+    ports:
+      - "5431:5431"
+    expose:
+      - 5431
+    command: -p 5431
+
+  ### MySQL database for ordenes
+  db-ordenes:
+    container_name: db-ordenes
+    image: mysql:8.0.33
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ms_ordenes
+      MYSQL_USER: eduardo
+      MYSQL_PASSWORD: eduardo12345
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+  ### Postgres database for productos
+  db-productos:
+    container_name: ms-productos
+    image: postgres:15.2
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ms_productos
+      POSTGRES_USER: eduardo
+      POSTGRES_PASSWORD: eduardo12345
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
